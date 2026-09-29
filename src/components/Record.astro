@@ -1,0 +1,26 @@
+---
+// The spinning record from the app's DecorativeBg, sized by its parent.
+type Props = { class?: string; spinning?: boolean };
+const { class: className, spinning = true } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    "flex aspect-square items-center justify-center rounded-full border-2 border-gray-400/15 bg-background",
+    className,
+  ]}
+>
+  <div
+    class:list={[
+      "flex h-3/4 w-3/4 items-center justify-center rounded-full border-t-2 border-gray-400/20 [animation-duration:8s]",
+      spinning && "animate-spin",
+    ]}
+  >
+    <div
+      class="flex aspect-square h-[28%] items-center justify-center rounded-full bg-amber-500/90"
+    >
+      <div class="h-1/4 w-1/4 rounded-full bg-background"></div>
+    </div>
+  </div>
+</div>

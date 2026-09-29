@@ -1,0 +1,21 @@
+---
+import { toHTML } from "@portabletext/to-html";
+import type { Home } from "../lib/types";
+
+type Props = { manifesto: NonNullable<Home["manifesto"]> };
+const { manifesto } = Astro.props;
+const html = manifesto.body ? toHTML(manifesto.body) : "";
+---
+
+<section class="border-t border-black/10 py-20">
+  <div class="mx-auto flex max-w-2xl flex-col gap-6">
+    <h2 class="font-serif text-3xl font-bold text-amber-700 md:text-4xl">
+      {manifesto.heading}
+    </h2>
+    <div
+      class="flex flex-col gap-4 text-lg [&_a]:underline [&_a]:underline-offset-4"
+      set:html={html}
+    />
+    {manifesto.signature && <p class="font-serif">{manifesto.signature}</p>}
+  </div>
+</section>

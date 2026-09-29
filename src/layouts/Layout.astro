@@ -1,0 +1,28 @@
+---
+import "../styles/global.css";
+
+type Props = { title: string; description?: string };
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="theme-color" content="#f59e0b" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL("/logo.png", Astro.site)} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  </head>
+  <body class="flex w-full justify-center font-sans">
+    <div class="w-11/12 max-w-6xl">
+      <slot />
+    </div>
+  </body>
+</html>

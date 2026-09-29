@@ -1,0 +1,28 @@
+---
+import type { Home } from "../lib/types";
+
+type Props = { faq: NonNullable<Home["faq"]> };
+const { faq } = Astro.props;
+---
+
+<section id="faq" class="mx-auto max-w-2xl scroll-mt-8 py-16">
+  <h2 class="mb-6 font-serif text-3xl font-bold md:text-4xl">{faq.heading}</h2>
+  <div class="flex flex-col">
+    {
+      faq.items?.map((item) => (
+        <details class="group border-b border-black/20 py-4">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold">
+            {item.question}
+            <span
+              aria-hidden="true"
+              class="text-xl text-amber-700 transition-transform group-open:rotate-45"
+            >
+              +
+            </span>
+          </summary>
+          {item.answer && <p class="pt-3 text-black/75">{item.answer}</p>}
+        </details>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+import { urlFor } from "../lib/image";
+import type { Home } from "../lib/types";
+import Button from "./Button.astro";
+import Record from "./Record.astro";
+
+type Props = { hero: Home["hero"] };
+const { hero } = Astro.props;
+---
+
+<section
+  class="relative grid items-center gap-12 py-16 md:grid-cols-[1.1fr_1fr] md:py-28"
+>
+  <div class="flex flex-col gap-6">
+    {
+      hero.eyebrow && (
+        <p class="anim-translate text-sm font-bold text-amber-700">
+          {hero.eyebrow}
+        </p>
+      )
+    }
+    <h1
+      class="anim-translate font-serif text-5xl leading-[1.05] font-bold text-balance md:text-7xl"
+      style="--stagger: 1"
+    >
+      {hero.headline}
+    </h1>
+    {
+      hero.subheadline && (
+        <p
+          class="anim-translate max-w-xl text-lg text-pretty text-black/75"
+          style="--stagger: 2"
+        >
+          {hero.subheadline}
+        </p>
+      )
+    }
+    <div
+      class="anim-translate flex flex-wrap items-center gap-6 pt-2"
+      style="--stagger: 3"
+    >
+      {hero.primaryCta && <Button link={hero.primaryCta} />}
+      {hero.secondaryCta && <Button link={hero.secondaryCta} variant="ghost" />}
+    </div>
+  </div>
+
+  {
+    hero.image ? (
+      <img
+        src={urlFor(hero.image).width(1200).url()}
+        alt={hero.image.alt ?? ""}
+        class="w-full rounded-md border-2 border-b-4 border-black"
+        loading="eager"
+      />
+    ) : (
+      <div class="relative mx-auto w-full max-w-60 md:max-w-md">
+        <Record class="w-full" />
+      </div>
+    )
+  }
+</section>

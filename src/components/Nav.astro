@@ -1,0 +1,39 @@
+---
+import type { SiteSettings } from "../lib/types";
+import Logo from "./Logo.astro";
+
+type Props = { settings: SiteSettings };
+const { settings } = Astro.props;
+const links = settings.navLinks ?? [];
+---
+
+<nav class="flex w-full items-center justify-between py-4 text-sm">
+  <Logo name={settings.siteName} />
+  <div class="flex items-center gap-2">
+    <ul class="hidden items-center gap-2 md:flex">
+      {
+        links.map((link, i) => (
+          <li class="flex items-center gap-2">
+            {i > 0 && <span aria-hidden="true">·</span>}
+            <a
+              href={link.href}
+              class="underline-offset-4 decoration-black/30 hover:underline"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    {
+      settings.appUrl && (
+        <a
+          href={settings.appUrl}
+          class="ml-4 rounded border-2 border-b-4 border-black bg-amber-500 px-4 py-1 text-xs font-bold hover:bg-amber-400"
+        >
+          Open {settings.siteName}
+        </a>
+      )
+    }
+  </div>
+</nav>

@@ -1,0 +1,33 @@
+---
+import Artists from "../components/Artists.astro";
+import Faq from "../components/Faq.astro";
+import Features from "../components/Features.astro";
+import FinalCta from "../components/FinalCta.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Manifesto from "../components/Manifesto.astro";
+import Nav from "../components/Nav.astro";
+import Steps from "../components/Steps.astro";
+import Layout from "../layouts/Layout.astro";
+import { getHome, getSettings } from "../lib/content";
+
+const [home, settings] = await Promise.all([getHome(), getSettings()]);
+const show = <T extends { hidden?: boolean }>(s?: T): s is T => !!s && !s.hidden;
+---
+
+<Layout
+  title={home.seo?.title ?? settings.siteName}
+  description={home.seo?.description}
+>
+  <Nav settings={settings} />
+  <main>
+    <Hero hero={home.hero} />
+    {show(home.features) && <Features features={home.features} />}
+    {show(home.steps) && <Steps steps={home.steps} />}
+    {show(home.manifesto) && <Manifesto manifesto={home.manifesto} />}
+    {show(home.artists) && <Artists artists={home.artists} />}
+    {show(home.faq) && <Faq faq={home.faq} />}
+    {show(home.finalCta) && <FinalCta finalCta={home.finalCta} />}
+  </main>
+  <Footer settings={settings} />
+</Layout>

@@ -1,0 +1,38 @@
+---
+import type { Home } from "../lib/types";
+
+type Props = { artists: NonNullable<Home["artists"]> };
+const { artists } = Astro.props;
+---
+
+<section id="artists" class="scroll-mt-8 py-16">
+  <div
+    class="grid gap-10 rounded-md border-2 border-b-4 border-black bg-amber-500 p-8 md:grid-cols-2 md:p-12"
+  >
+    <div class="flex flex-col gap-4">
+      <h2 class="font-serif text-3xl font-bold md:text-5xl">
+        {artists.heading}
+      </h2>
+      {artists.body && <p class="max-w-md text-lg">{artists.body}</p>}
+      {
+        artists.cta && (
+          <a
+            href={artists.cta.href}
+            class="mt-2 w-fit rounded border-2 border-b-4 border-black bg-background px-5 py-2 font-bold transition-all hover:bg-white active:border-b-2"
+          >
+            {artists.cta.label}
+          </a>
+        )
+      }
+    </div>
+    <ul class="flex flex-col self-center">
+      {
+        artists.bullets?.map((bullet) => (
+          <li class="border-b-2 border-black/80 py-3 font-bold last:border-b-0">
+            {bullet}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

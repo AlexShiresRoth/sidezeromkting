@@ -1,0 +1,25 @@
+---
+import type { Home } from "../lib/types";
+
+type Props = { steps: NonNullable<Home["steps"]> };
+const { steps } = Astro.props;
+---
+
+<section id="how-it-works" class="scroll-mt-8 border-t border-black/10 py-16">
+  <h2 class="mb-10 font-serif text-3xl font-bold md:text-4xl">
+    {steps.heading}
+  </h2>
+  <ol class="grid gap-10 md:grid-cols-3">
+    {
+      steps.items?.map((item, i) => (
+        <li class="flex flex-col gap-2">
+          <span class="font-serif text-6xl font-bold text-amber-500">
+            {i + 1}
+          </span>
+          <h3 class="text-lg font-bold">{item.title}</h3>
+          {item.body && <p class="text-black/75">{item.body}</p>}
+        </li>
+      ))
+    }
+  </ol>
+</section>

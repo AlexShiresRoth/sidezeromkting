@@ -1,0 +1,15 @@
+---
+import type { Home } from "../lib/types";
+import Button from "./Button.astro";
+
+type Props = { finalCta: NonNullable<Home["finalCta"]> };
+const { finalCta } = Astro.props;
+---
+
+<section class="flex flex-col items-center gap-4 py-24 text-center">
+  <h2 class="font-serif text-4xl font-bold text-balance md:text-6xl">
+    {finalCta.heading}
+  </h2>
+  {finalCta.body && <p class="text-lg text-black/75">{finalCta.body}</p>}
+  {finalCta.cta && <Button link={finalCta.cta} class="mt-4" />}
+</section>

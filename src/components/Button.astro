@@ -1,0 +1,21 @@
+---
+import type { Link } from "../lib/types";
+
+type Props = { link: Link; variant?: "primary" | "ghost"; class?: string };
+
+const { link, variant = "primary", class: className } = Astro.props;
+const external = /^https?:/.test(link.href);
+---
+
+<a
+  href={link.href}
+  {...external && { rel: "noopener" }}
+  class:list={[
+    variant === "primary"
+      ? "inline-flex items-center justify-center rounded border-2 border-b-4 border-black bg-amber-500 px-5 py-2 font-bold text-black transition-all hover:bg-amber-400 active:border-b-2"
+      : "inline-flex items-center gap-1 font-bold underline decoration-black/30 underline-offset-4 hover:decoration-black",
+    className,
+  ]}
+>
+  {link.label}
+</a>

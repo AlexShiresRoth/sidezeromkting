@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@import "@fontsource/libre-baskerville/400.css";
+@import "@fontsource/libre-baskerville/700.css";
+@import "@fontsource-variable/geist";
+
+/* Mirrors the Side0 app theme (music-discovery-app/app/globals.css). */
+:root {
+  --background: #fef2e0;
+  --foreground: #111111;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:
+    "Libre Baskerville", ui-serif, Georgia, Cambria, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@keyframes translate-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Set --stagger (0, 1, 2…) per element, same as the app's clip stagger. */
+.anim-translate {
+  animation: translate-in 0.4s ease-in-out calc(var(--stagger, 0) * 0.12s) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .anim-translate,
+  .animate-spin {
+    animation: none;
+  }
+}

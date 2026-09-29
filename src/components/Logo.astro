@@ -1,0 +1,12 @@
+---
+type Props = { name: string };
+const { name } = Astro.props;
+---
+
+<a href="/" class="flex items-center gap-2 font-serif text-lg font-bold">
+  <span
+    class="flex h-8 w-8 items-center justify-center rounded border-2 border-b-4 border-black bg-amber-500 leading-none"
+    >0</span
+  >
+  {name}
+</a>
