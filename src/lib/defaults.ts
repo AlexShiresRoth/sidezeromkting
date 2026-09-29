@@ -47,7 +47,10 @@ export const defaultHome: Home = {
     subheadline:
       "Side0 is a level playing field for independent artists to share their music and connect with new listeners — without all the added nonsense.",
     primaryCta: { label: "Start listening", href: APP_URL },
-    secondaryCta: { label: "I make music", href: "#artists" },
+    secondaryCta: {
+      label: "I make music",
+      href: `${APP_URL}/login?register=true`,
+    },
   },
   features: {
     heading: "Discovery, the way it used to feel",
@@ -74,8 +77,14 @@ export const defaultHome: Home = {
     heading: "How it works",
     items: [
       { title: "Open the feed", body: "No account needed to start listening." },
-      { title: "Go nearby", body: "Share your location to hear your local scene." },
-      { title: "Follow the jams", body: "Dig into an artist's profile, clips, and links." },
+      {
+        title: "Go nearby",
+        body: "Share your location to hear your local scene.",
+      },
+      {
+        title: "Follow the jams",
+        body: "Dig into an artist's profile, clips, and links.",
+      },
     ],
   },
   manifesto: {
@@ -88,7 +97,10 @@ export const defaultHome: Home = {
       paragraph(
         "There's no algorithm here trying to feed you what it thinks you'd like to hear. No recommendation engine. No popularity contest.",
       ),
-      paragraph("Just let the jams speak for themselves. That's the main idea.", true),
+      paragraph(
+        "Just let the jams speak for themselves. That's the main idea.",
+        true,
+      ),
     ],
     signature: "— Alex",
   },
@@ -101,7 +113,10 @@ export const defaultHome: Home = {
       "Let venues know you're looking for gigs",
       "Free, and every artist gets the same shot",
     ],
-    cta: { label: "Create your profile", href: `${APP_URL}/login?register=true` },
+    cta: {
+      label: "Create your profile",
+      href: `${APP_URL}/login?register=true`,
+    },
   },
   faq: {
     heading: "Questions",
@@ -117,7 +132,8 @@ export const defaultHome: Home = {
       },
       {
         question: "Do I need an account to listen?",
-        answer: "No. You only need one to create an artist profile and upload clips.",
+        answer:
+          "No. You only need one to create an artist profile and upload clips.",
       },
     ],
   },
